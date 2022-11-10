@@ -20,7 +20,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .with_host_registration_config(HostRegistrationConfigOptions::default().wasi(true))
         .build()?;
 
-    let aot_file = "/Users/sam/workspace/rust/benchmark/target/wasm32-wasi/release/test-app.wasm";
+    let aot_file = "aot-test-app.wasm";
 
     println!(
         "time cost intialize config: {:?} us",

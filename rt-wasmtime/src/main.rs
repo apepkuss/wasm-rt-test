@@ -8,6 +8,8 @@ use wasmtime_wasi::tokio::WasiCtxBuilder;
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
+    let start = Instant::now();
+
     let mut config = Config::new();
     // We need this engine's `Store`s to be async, and consume fuel, so
     // that they can co-operatively yield during execution.
@@ -21,7 +23,6 @@ async fn main() -> Result<(), Error> {
         "/Users/sam/workspace/rust/benchmark/target/wasm32-wasi/release/test-app.wasm",
     )?;
 
-    let start = Instant::now();
     // A `Linker` is shared in the environment amongst all stores, and this
     // linker is used to instantiate the `module` above. This example only
     // adds WASI functions to the linker, notably the async versions built
@@ -30,20 +31,20 @@ async fn main() -> Result<(), Error> {
     wasmtime_wasi::tokio::add_to_linker(&mut linker, |cx| cx)?;
 
     println!(
-        "time cost create linker: {:?} ms",
-        start.elapsed().as_millis()
+        "time cost create linker: {:?} us",
+        start.elapsed().as_micros()
     );
     let wasi = WasiCtxBuilder::new()
         // Let wasi print to this process's stdout.
         .inherit_stdout()
         .build();
 
-    println!("time cost build wasi: {:?} ms", start.elapsed().as_millis());
+    println!("time cost build wasi: {:?} us", start.elapsed().as_micros());
     let mut store = Store::new(&engine, wasi);
 
     println!(
-        "time cost create store: {:?} ms",
-        start.elapsed().as_millis()
+        "time cost create store: {:?} us",
+        start.elapsed().as_micros()
     );
     // WebAssembly execution will be paused for an async yield every time it
     // consumes 10000 fuel. Fuel will be refilled u64::MAX times.
@@ -54,8 +55,8 @@ async fn main() -> Result<(), Error> {
     let instance = linker.instantiate_async(&mut store, &module).await?;
 
     println!(
-        "time cost intialize instance: {:?} ms",
-        start.elapsed().as_millis()
+        "time cost intialize instance: {:?} us",
+        start.elapsed().as_micros()
     );
 
     instance
@@ -64,8 +65,8 @@ async fn main() -> Result<(), Error> {
         .await?;
 
     println!(
-        "time cost call 1000*10000 times fib(30): {:?} ms",
-        start.elapsed().as_millis()
+        "time cost call 1000*10000 times fib(30): {:?} us",
+        start.elapsed().as_micros()
     );
     Ok(())
 }

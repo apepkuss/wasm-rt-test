@@ -1529,6 +1529,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "rt-wasmedge-async-aot"
+version = "0.1.0"
+dependencies = [
+ "tokio",
+ "wasmedge-sdk",
+]
+
+[[package]]
 name = "rt-wasmer"
 version = "0.1.0"
 dependencies = [

@@ -8,8 +8,8 @@ use wasmedge_sdk::{
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let start = Instant::now();
     println!(
-        "time cost create result: {:?} ms",
-        start.elapsed().as_millis()
+        "time cost create result: {:?} us",
+        start.elapsed().as_micros()
     );
 
     // create a Config context
@@ -21,19 +21,19 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let file = "aot-test-app.wasm";
 
     println!(
-        "time cost intialize config: {:?} ms",
-        start.elapsed().as_millis()
+        "time cost intialize config: {:?} us",
+        start.elapsed().as_micros()
     );
 
     let vm = Vm::new(Some(config))?;
 
-    println!("time cost create vm: {:?} ms", start.elapsed().as_millis());
+    println!("time cost create vm: {:?} us", start.elapsed().as_micros());
 
     let _ = vm.run_func_from_file(file, "_start", params!())?;
 
     println!(
-        "time cost call 1000*10000 times fib(30): {:?} ms",
-        start.elapsed().as_millis()
+        "time cost call 1000*10000 times fib(30): {:?} us",
+        start.elapsed().as_micros()
     );
     Ok(())
 }

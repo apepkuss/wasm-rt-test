@@ -6,6 +6,14 @@
 - Hardware: Apple M1 Pro + 32GB RAM
 - Rust: 1.67.0-nightly (215e3cd21 2022-11-03)
 
+## Test Programs
+
+- The `test-app` program is from [issue 2073](https://github.com/WasmEdge/WasmEdge/discussions/2073) by @shippomx. It is compiled into the `test-app.wasm` file.
+
+- The source code of `rt-xxx` programs are also derived from [issue 2073](https://github.com/WasmEdge/WasmEdge/discussions/2073) by @shippomx, but some of them are modified to make them more suitable for this test.
+
+- `rt-wasmedge-aot` and `rt-wasmedge-async-aot` are newly introduced in this test.
+
 ## Statistics of time cost of 1000*10000 times fib(30)
 
 <img src="statistics.png" alt="statistics" style="zoom:50%;"/>

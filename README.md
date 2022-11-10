@@ -39,7 +39,7 @@
   time cost call 1000*10000 times fib(30): 2 ms
   ```
 
-- The Best of 10 samples of `rt-wasmtime`
+- The best of 10 samples of `rt-wasmtime`
   
   ```bash
   time cost create linker: 0 ms

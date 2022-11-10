@@ -777,6 +777,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "gen-aot-from-test-app"
+version = "0.1.0"
+dependencies = [
+ "wasmedge-sys",
+ "wasmedge-types",
+]
+
+[[package]]
 name = "generational-arena"
 version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1500,6 +1508,13 @@ dependencies = [
 
 [[package]]
 name = "rt-wasmedge"
+version = "0.1.0"
+dependencies = [
+ "wasmedge-sdk",
+]
+
+[[package]]
+name = "rt-wasmedge-aot"
 version = "0.1.0"
 dependencies = [
  "wasmedge-sdk",

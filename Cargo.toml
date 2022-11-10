@@ -1,2 +1,2 @@
 [workspace]
-members = ["test-app", "rt-wasmedge", "rt-wasmedge-async"] #, "rt-wasmer", "rt-wasmtime"]
+members = ["test-app", "rt-wasmedge", "rt-wasmedge-async", "rt-wasmer"] #, "rt-wasmtime"]

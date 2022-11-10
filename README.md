@@ -1,5 +1,11 @@
 # WasmEdge Rust vs. Wasmtime vs. Wasmer
 
+## Test Environment
+
+- OS: macOS 12.3.1
+- Hardware: Apple M1 Pro + 32GB RAM
+- Rust: 1.67.0-nightly (215e3cd21 2022-11-03)
+
 ## Statistics of time cost of 1000*10000 times fib(30)
 
 | wasmedge  | wasmedge-async | wasmtime  | wasmer |

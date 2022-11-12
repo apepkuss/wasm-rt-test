@@ -18,10 +18,9 @@ async fn main() -> Result<(), Error> {
 
     let engine = Engine::new(&config)?;
 
-    let module = Module::from_file(
-        &engine,
-        "/Users/sam/workspace/rust/benchmark/target/wasm32-wasi/release/test-app.wasm",
-    )?;
+    let curr_dir = std::env::current_dir()?;
+    let wasm_file = curr_dir.join("target/wasm32-wasi/release/test-app.wasm");
+    let module = Module::from_file(&engine, wasm_file)?;
 
     // A `Linker` is shared in the environment amongst all stores, and this
     // linker is used to instantiate the `module` above. This example only

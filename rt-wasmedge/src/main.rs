@@ -18,7 +18,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .with_host_registration_config(HostRegistrationConfigOptions::default().wasi(true))
         .build()?;
 
-    let file = "/Users/sam/workspace/rust/benchmark/target/wasm32-wasi/release/test-app.wasm";
+    let curr_dir = std::env::current_dir()?;
+    let wasm_file = curr_dir.join("target/wasm32-wasi/release/test-app.wasm");
 
     println!(
         "time cost intialize config: {:?} us",
@@ -29,7 +30,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     println!("time cost create vm: {:?} us", start.elapsed().as_micros());
 
-    let _ = vm.run_func_from_file(file, "_start", params!())?;
+    let _ = vm.run_func_from_file(wasm_file, "_start", params!())?;
 
     println!(
         "time cost call 1000*10000 times fib(30): {:?} us",

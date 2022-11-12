@@ -18,7 +18,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .with_host_registration_config(HostRegistrationConfigOptions::default().wasi(true))
         .build()?;
 
-    let file = "aot-test-app.wasm";
+    #[cfg(target_os = "linux")]
+    let aot_file = "aot-test-app.so";
+    #[cfg(target_os = "macos")]
+    let aot_file = "aot-test-app.dylib";
 
     println!(
         "time cost intialize config: {:?} us",
@@ -29,7 +32,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     println!("time cost create vm: {:?} us", start.elapsed().as_micros());
 
-    let _ = vm.run_func_from_file(file, "_start", params!())?;
+    let _ = vm.run_func_from_file(aot_file, "_start", params!())?;
 
     println!(
         "time cost call 1000*10000 times fib(30): {:?} us",

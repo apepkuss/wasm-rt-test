@@ -20,7 +20,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .with_host_registration_config(HostRegistrationConfigOptions::default().wasi(true))
         .build()?;
 
-    let aot_file = "aot-test-app.wasm";
+    #[cfg(target_os = "linux")]
+    let aot_file = "aot-test-app.so";
+    #[cfg(target_os = "macos")]
+    let aot_file = "aot-test-app.dylib";
 
     println!(
         "time cost intialize config: {:?} us",

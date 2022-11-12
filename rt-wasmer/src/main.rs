@@ -8,9 +8,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let start = Instant::now();
 
     // Let's declare the Wasm module with the text representation.
-    let wasm_bytes = std::fs::read(
-        "/Users/sam/workspace/rust/benchmark/target/wasm32-wasi/release/test-app.wasm",
-    )?;
+    let curr_dir = std::env::current_dir()?;
+    let wasm_bytes = std::fs::read(curr_dir.join("target/wasm32-wasi/release/test-app.wasm"))?;
 
     // Create a Store.
     // Note that we don't need to specify the engine/compiler if we want to use

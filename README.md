@@ -1,22 +1,26 @@
 # WasmEdge Rust vs. Wasmtime vs. Wasmer
 
-## Test Environment
-
-- OS: macOS 12.3.1
-- Hardware: Apple M1 Pro + 32GB RAM
-- Rust: 1.67.0-nightly (215e3cd21 2022-11-03)
-
 ## Test Programs
 
 - The `test-app` program is from [issue 2073](https://github.com/WasmEdge/WasmEdge/discussions/2073) by @shippomx. It is compiled into the `test-app.wasm` file.
+
+- The `gen-aot-from-test-app` program is used to generate the shared library file from the `test-app.wasm` file. The library file is used to test WasmEdge AOT mode.
 
 - The source code of `rt-xxx` programs are also derived from [issue 2073](https://github.com/WasmEdge/WasmEdge/discussions/2073) by @shippomx, but some of them are modified to make them more suitable for this test.
 
 - `rt-wasmedge-aot` and `rt-wasmedge-async-aot` are newly introduced in this test.
 
-## Statistics of time cost of 1000*10000 times fib(30)
+## Test on `macOS`
 
-<img src="statistics.png" alt="statistics" style="zoom:50%;"/>
+### Test Environment
+
+- OS: macOS 12.3.1
+- Hardware: Apple M1 Pro + 32GB RAM
+- Rust: 1.67.0-nightly (215e3cd21 2022-11-03)
+
+### Statistics of time cost of 1000*10000 times fib(30)
+
+<img src="statistics-macos-m1.png" alt="statistics-macos-m1" style="zoom:50%;"/>
 
 - The best of 10 samples of `rt-wasmedge`
   
@@ -74,12 +78,18 @@
   time cost call 1000*10000 times fib(30): 143749 us
   ```
 
-## Test Environment
+## Test on `Ubuntu 22.04`
+
+### Test Environment
 
 - OS: Ubuntu-22.04 (on WSL2 on Windows 11)
 - Hardware: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz + 16GB RAM
 - Rust: 1.67.0-nightly (42325c525 2022-11-11)
 
+### Statistics of time cost of 1000*10000 times fib(30)
+
+
+<img src="statistics-ubuntu2204-wsl2-x86-64.png" alt="statistics-ubuntu2204" style="zoom:50%;"/>
 
 - The best of 10 samples of `rt-wasmedge`
   
